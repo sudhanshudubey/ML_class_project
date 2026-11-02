@@ -1,0 +1,21 @@
+.DS_Store
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+
+# Restricted survey data and local course files
+/data/*
+!/data/README.md
+*.csv
+*.tsv
+*.xlsx
+*.xls
+*.parquet
+*.feather
+*.zip
+*.pdf
+*.docx
