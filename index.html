@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Machine Learning portfolio by Sudhanshu Dubey: employability analysis, regression interpretation and honest classifier evaluation.">
+<title>Employability — Sudhanshu Dubey</title>
+<style>html,body{margin:0;padding:0;min-height:100%;background:#f5f6f3}body{padding:16px}@media(max-width:650px){body{padding:0}}@media(prefers-color-scheme:dark){html,body{background:#101b1e}}</style>
+</head>
+<body>
+<div id="employability-preview">
+  <style>
+    #employability-preview{color-scheme:light dark;--ep-bg:light-dark(#f5f6f3,#101b1e);--ep-panel:light-dark(#ffffff,#17262a);--ep-ink:light-dark(#253739,#e4eeeb);--ep-muted:light-dark(#667777,#a3b5b3);--ep-line:light-dark(#e3e9e5,#304246);--ep-soft:light-dark(#f1f5f2,#233539);--ep-teal:light-dark(#176e64,#74c6b4);--ep-teal-soft:light-dark(#e8f3ed,#213d37);--ep-coral:light-dark(#b75842,#edaa94);--ep-coral-soft:light-dark(#fbefe8,#422f2b);--ep-navy:#163b39;--ep-shadow:0 3px 15px #152f2410;background:var(--ep-bg);color:var(--ep-ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:14px;line-height:1.5;border-radius:16px;overflow:hidden;isolation:isolate;text-align:left}
+    #employability-preview *{box-sizing:border-box}
+    #employability-preview button,#employability-preview select{font:inherit}
+    #employability-preview button{color:inherit;cursor:pointer}
+    #employability-preview button:focus-visible,#employability-preview select:focus-visible{outline:3px solid var(--ep-teal);outline-offset:3px}
+    #employability-preview svg{display:block;flex-shrink:0}
+    #employability-preview .ep-shell{display:grid;grid-template-columns:204px minmax(0,1fr);min-height:850px}
+    #employability-preview .ep-sidebar{background:var(--ep-navy);color:#eff9f2;padding:30px 17px 24px;display:flex;flex-direction:column;gap:32px}
+    #employability-preview .ep-brand{display:flex;gap:10px;align-items:center;padding:0 9px}
+    #employability-preview .ep-brand-mark{width:34px;height:34px;border:1px solid #83b8a16b;border-radius:9px;display:grid;place-items:center;color:#d0edc9}
+    #employability-preview .ep-brand-name{font-size:16px;letter-spacing:-.4px;font-weight:650}
+    #employability-preview .ep-brand-sub{font-size:10px;letter-spacing:1.5px;color:#aec8bb;text-transform:uppercase;margin-top:1px}
+    #employability-preview .ep-nav-caption{font-size:10px;font-weight:600;letter-spacing:1.7px;color:#9cbaaf;margin:0 13px 12px;text-transform:uppercase}
+    #employability-preview .ep-nav{display:grid;gap:7px}
+    #employability-preview .ep-nav-button{border:0;background:transparent;border-radius:8px;display:flex;gap:12px;align-items:center;padding:12px 13px;min-height:44px;text-align:left;color:#c4d8cf;font-size:13px;transition:background .15s,color .15s}
+    #employability-preview .ep-nav-button:hover{background:#ffffff0a;color:white}
+    #employability-preview .ep-nav-button[aria-current="page"]{background:#d9e9c4;color:#173d36;font-weight:650}
+    #employability-preview .ep-sidebar-note{margin-top:auto;padding:16px 12px;border-top:1px solid #9dc2b72b}
+    #employability-preview .ep-sidebar-note p{font-size:12px;line-height:1.7;color:#bad1c6;margin:9px 0 0}
+    #employability-preview .ep-author{display:flex;gap:10px;align-items:center;padding:0 10px}
+    #employability-preview .ep-avatar{width:30px;height:30px;border-radius:50%;background:#ffffff14;display:grid;place-items:center;font-size:10px;letter-spacing:.5px}
+    #employability-preview .ep-author strong{display:block;font-weight:550;font-size:11px}
+    #employability-preview .ep-author small{display:block;color:#b6ccc1;font-size:10px}
+    #employability-preview .ep-main{padding:0 30px 24px;min-width:0;max-width:1350px;width:100%;margin:0 auto}
+    #employability-preview .ep-topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--ep-line);padding:21px 0;font-size:11px;color:var(--ep-muted)}
+    #employability-preview .ep-crumb{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+    #employability-preview .ep-crumb b{font-weight:550;color:var(--ep-ink)}
+    #employability-preview .ep-public{display:flex;align-items:center;gap:6px;white-space:nowrap;color:var(--ep-teal);font-size:11px}
+    #employability-preview .ep-head{padding:28px 0 24px}
+    #employability-preview .ep-eyebrow{display:flex;align-items:center;gap:8px;color:var(--ep-teal);font-size:10px;font-weight:650;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+    #employability-preview .ep-eyebrow::before{content:"";width:18px;height:1px;background:currentColor}
+    #employability-preview h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(28px,3.2vw,43px);font-weight:400;letter-spacing:-1.4px;line-height:1.14;margin:0 0 12px}
+    #employability-preview .ep-subtitle{color:var(--ep-muted);font-size:13px;max-width:660px;line-height:1.7;margin:0}
+    #employability-preview .ep-view[hidden]{display:none!important}
+    #employability-preview .ep-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:24px}
+    #employability-preview .ep-metric{padding:18px 17px;background:var(--ep-panel);border:1px solid var(--ep-line);border-radius:10px;min-width:0}
+    #employability-preview .ep-metric-label{color:var(--ep-muted);font-size:11px;margin-bottom:8px}
+    #employability-preview .ep-metric-value{font-size:29px;line-height:1.2;letter-spacing:-1px;font-weight:550;font-variant-numeric:tabular-nums}
+    #employability-preview .ep-metric-value small{font-size:14px;letter-spacing:0;color:var(--ep-muted);font-weight:400}
+    #employability-preview .ep-metric-context{font-size:10px;color:var(--ep-muted);margin-top:7px;line-height:1.6}
+    #employability-preview .ep-positive{color:var(--ep-teal)}
+    #employability-preview .ep-caution{color:var(--ep-coral)}
+    #employability-preview .ep-grid-main{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(225px,1fr);gap:20px;align-items:start}
+    #employability-preview .ep-panel{background:var(--ep-panel);border:1px solid var(--ep-line);border-radius:12px;padding:21px;min-width:0}
+    #employability-preview .ep-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:20px}
+    #employability-preview h2{font-size:15px;font-weight:600;letter-spacing:-.25px;line-height:1.4;margin:0}
+    #employability-preview h3{font-size:13px;font-weight:600;margin:0 0 8px;line-height:1.5}
+    #employability-preview .ep-caption{font-size:11px;color:var(--ep-muted);margin:5px 0 0;line-height:1.6}
+    #employability-preview .ep-select{max-width:100%;border:1px solid var(--ep-line);border-radius:7px;color:var(--ep-ink);background:var(--ep-panel);padding:7px 9px;font-size:11px;min-height:34px}
+    #employability-preview .ep-score-axis{display:grid;grid-template-columns:146px minmax(0,1fr) 35px;gap:10px;font-size:10px;color:var(--ep-muted);margin-bottom:9px}
+    #employability-preview .ep-ticks{display:flex;justify-content:space-between;padding:0 5px;font-variant-numeric:tabular-nums}
+    #employability-preview .ep-score-list{display:grid;gap:3px}
+    #employability-preview .ep-score-row{display:grid;grid-template-columns:146px minmax(0,1fr) 35px;gap:10px;align-items:center;padding:8px 0;border:0;border-radius:6px;background:transparent;text-align:left;min-height:36px;width:100%}
+    #employability-preview .ep-score-row:hover{background:var(--ep-soft)}
+    #employability-preview .ep-score-label{font-size:11px;color:var(--ep-muted);line-height:1.4}
+    #employability-preview .ep-score-row[aria-pressed="true"] .ep-score-label{color:var(--ep-teal);font-weight:650}
+    #employability-preview .ep-score-track{height:20px;position:relative;margin:0 5px;display:block;background:repeating-linear-gradient(90deg,var(--ep-line) 0,var(--ep-line) 1px,transparent 1px,transparent calc(100% / 6));border-right:1px solid var(--ep-line)}
+    #employability-preview .ep-score-track::before{content:"";height:2px;background:var(--ep-soft);position:absolute;left:0;right:0;top:9px}
+    #employability-preview .ep-score-dot{width:9px;height:9px;border-radius:50%;background:var(--ep-teal);position:absolute;top:5px;transform:translateX(-50%);z-index:1;opacity:.5;transition:left .25s}
+    #employability-preview .ep-score-row[aria-pressed="true"] .ep-score-dot{width:12px;height:12px;top:4px;opacity:1;box-shadow:0 0 0 4px var(--ep-teal-soft)}
+    #employability-preview .ep-score-number{font-size:11px;font-variant-numeric:tabular-nums;text-align:right;color:var(--ep-ink)}
+    #employability-preview .ep-selected-note{background:var(--ep-soft);border-radius:7px;margin-top:18px;padding:12px 13px;min-height:64px;font-size:11px;color:var(--ep-muted);line-height:1.7}
+    #employability-preview .ep-selected-note strong{color:var(--ep-ink);font-weight:600}
+    #employability-preview .ep-source{font-size:10px;color:var(--ep-muted);margin-top:15px;line-height:1.6}
+    #employability-preview .ep-right-column{display:grid;gap:18px}
+    #employability-preview .ep-donut{width:160px;height:160px;margin:18px auto 22px;position:relative}
+    #employability-preview .ep-donut svg{width:100%;height:100%;transform:rotate(-90deg)}
+    #employability-preview .ep-donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    #employability-preview .ep-donut-center strong{font-size:29px;font-weight:550;letter-spacing:-1px}
+    #employability-preview .ep-donut-center span{font-size:10px;color:var(--ep-muted)}
+    #employability-preview .ep-legend-row{display:flex;gap:8px;align-items:center;margin-top:12px;font-size:11px}
+    #employability-preview .ep-swatch{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+    #employability-preview .ep-legend-row strong{margin-left:auto;font-variant-numeric:tabular-nums;font-weight:600}
+    #employability-preview .ep-legend-row em{font-style:normal;color:var(--ep-muted);min-width:42px;text-align:right;font-variant-numeric:tabular-nums}
+    #employability-preview .ep-insight{background:var(--ep-teal-soft);border:0}
+    #employability-preview .ep-insight h2{font-family:Georgia,"Times New Roman",serif;font-size:22px;font-weight:400;letter-spacing:-.4px;color:var(--ep-teal);line-height:1.25}
+    #employability-preview .ep-insight p{font-size:12px;line-height:1.8;color:var(--ep-muted);margin:12px 0 0}
+    #employability-preview .ep-rule{width:28px;height:2px;background:var(--ep-teal);opacity:.6;margin-bottom:18px}
+    #employability-preview .ep-two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
+    #employability-preview .ep-result-card{display:flex;flex-direction:column;min-height:170px}
+    #employability-preview .ep-section-tag{font-size:9px;letter-spacing:1.2px;font-weight:650;text-transform:uppercase;color:var(--ep-muted);margin-bottom:12px}
+    #employability-preview .ep-result-card p{font-size:12px;line-height:1.8;margin:9px 0 14px;color:var(--ep-muted)}
+    #employability-preview .ep-link-button{display:inline-flex;align-items:center;gap:7px;background:none;border:0;padding:4px 0;color:var(--ep-teal);font-size:11px;font-weight:600;align-self:flex-start;margin-top:auto}
+    #employability-preview .ep-link-button:hover{text-decoration:underline}
+    #employability-preview .ep-footer{border-top:1px solid var(--ep-line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:17px;margin-top:26px;color:var(--ep-muted);font-size:10px}
+    #employability-preview .ep-segment{display:inline-flex;background:var(--ep-soft);padding:3px;border-radius:7px;gap:3px;flex-wrap:wrap;margin:0 0 17px}
+    #employability-preview .ep-segment button{border:0;background:none;border-radius:5px;padding:7px 9px;font-size:10px;color:var(--ep-muted);min-height:32px}
+    #employability-preview .ep-segment button[aria-pressed="true"]{background:var(--ep-panel);color:var(--ep-ink);box-shadow:var(--ep-shadow);font-weight:600}
+    #employability-preview .ep-coef-axis{display:grid;grid-template-columns:150px minmax(0,1fr) 47px;gap:10px;color:var(--ep-muted);font-size:10px;margin-bottom:10px}
+    #employability-preview .ep-coef-list{display:grid;gap:7px}
+    #employability-preview .ep-coef-row{display:grid;grid-template-columns:150px minmax(0,1fr) 47px;gap:10px;align-items:center;border:0;background:none;padding:6px 0;text-align:left;width:100%;border-radius:5px;min-height:32px}
+    #employability-preview .ep-coef-row:hover{background:var(--ep-soft)}
+    #employability-preview .ep-coef-label{font-size:11px;line-height:1.4;color:var(--ep-muted)}
+    #employability-preview .ep-coef-track{height:19px;position:relative;background:linear-gradient(90deg,transparent calc(50% - .5px),var(--ep-muted) calc(50% - .5px),var(--ep-muted) calc(50% + .5px),transparent calc(50% + .5px))}
+    #employability-preview .ep-coef-bar{height:8px;position:absolute;top:6px;background:var(--ep-teal);border-radius:2px;min-width:1px;opacity:.8}
+    #employability-preview .ep-coef-bar.negative{background:var(--ep-coral)}
+    #employability-preview .ep-coef-value{font-size:11px;font-variant-numeric:tabular-nums;text-align:right}
+    #employability-preview .ep-coef-row[aria-pressed="true"] .ep-coef-label{font-weight:600;color:var(--ep-ink)}
+    #employability-preview .ep-chart-key{display:flex;align-items:center;gap:14px;margin-top:16px;color:var(--ep-muted);font-size:10px;flex-wrap:wrap}
+    #employability-preview .ep-chart-key span{display:flex;gap:6px;align-items:center}
+    #employability-preview .ep-key-mark{height:5px;width:14px;border-radius:2px;background:var(--ep-teal)}
+    #employability-preview .ep-note-title{font-family:Georgia,"Times New Roman",serif;font-size:24px;letter-spacing:-.5px;margin:12px 0 8px;line-height:1.25}
+    #employability-preview .ep-big-comparison{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+    #employability-preview .ep-number-block{background:var(--ep-soft);padding:14px 12px;border-radius:8px;min-width:0}
+    #employability-preview .ep-number-block small{display:block;font-size:10px;color:var(--ep-muted);margin-bottom:8px}
+    #employability-preview .ep-number-block strong{font-size:23px;font-weight:550;letter-spacing:-.5px;font-variant-numeric:tabular-nums}
+    #employability-preview .ep-table-wrap{overflow:auto;margin-top:15px}
+    #employability-preview table{border-collapse:collapse;width:100%;font-size:11px;min-width:430px;text-align:left}
+    #employability-preview th{font-weight:500;color:var(--ep-muted);padding:11px 9px;border-bottom:1px solid var(--ep-line)}
+    #employability-preview td{padding:14px 9px;border-bottom:1px solid var(--ep-line);font-variant-numeric:tabular-nums}
+    #employability-preview tbody tr:last-child td{border-bottom:0}
+    #employability-preview td:not(:first-child),#employability-preview th:not(:first-child){text-align:right}
+    #employability-preview .ep-badge{background:var(--ep-teal-soft);color:var(--ep-teal);border-radius:5px;padding:4px 7px;font-size:9px;font-weight:550;display:inline-block}
+    #employability-preview .ep-soft-caution{background:var(--ep-coral-soft);border:0}
+    #employability-preview .ep-soft-caution h2{color:var(--ep-coral)}
+    #employability-preview .ep-soft-caution p{color:var(--ep-muted);font-size:12px;line-height:1.8;margin:10px 0 0}
+    #employability-preview .ep-cm{display:grid;grid-template-columns:82px repeat(2,minmax(0,1fr));gap:7px;margin-top:24px;align-items:stretch}
+    #employability-preview .ep-cm-label{font-size:10px;color:var(--ep-muted);display:flex;align-items:center;justify-content:center;text-align:center;padding:3px;line-height:1.5}
+    #employability-preview .ep-cm-box{border:2px solid transparent;border-radius:8px;background:var(--ep-soft);padding:18px 4px;text-align:center;min-width:0}
+    #employability-preview .ep-cm-box strong{display:block;font-size:31px;font-weight:500;line-height:1.2;letter-spacing:-.7px}
+    #employability-preview .ep-cm-box span{display:block;font-size:9px;margin-top:5px;color:var(--ep-muted)}
+    #employability-preview .ep-cm-box.correct{background:var(--ep-teal-soft);color:var(--ep-teal)}
+    #employability-preview .ep-cm-box.missed{background:var(--ep-coral-soft);color:var(--ep-coral)}
+    #employability-preview .ep-cm-box[aria-pressed="true"]{border-color:currentColor}
+    #employability-preview .ep-bar-compare{display:grid;gap:20px;margin:24px 0 8px}
+    #employability-preview .ep-bar-label{display:flex;justify-content:space-between;gap:12px;font-size:11px;margin-bottom:7px}
+    #employability-preview .ep-bar-label strong{font-weight:550;font-variant-numeric:tabular-nums}
+    #employability-preview .ep-bar-track{height:8px;border-radius:4px;overflow:hidden;background:var(--ep-soft)}
+    #employability-preview .ep-bar-fill{height:100%;border-radius:4px;background:var(--ep-teal)}
+    #employability-preview .ep-odds-label{font-size:11px;color:var(--ep-muted);margin:18px 0 7px;display:block}
+    #employability-preview .ep-odds-picker{width:100%;font-size:12px;min-height:40px}
+    #employability-preview .ep-odds-value{font-size:43px;letter-spacing:-1.5px;line-height:1.2;margin:22px 0 3px;font-variant-numeric:tabular-nums;font-weight:500}
+    #employability-preview .ep-odds-value small{font-size:19px;color:var(--ep-muted)}
+    #employability-preview .ep-body-copy{font-size:12px;line-height:1.9;color:var(--ep-muted);margin:12px 0 0}
+    #employability-preview .ep-wide{margin-top:20px}
+    #employability-preview .ep-method-step{display:grid;grid-template-columns:28px minmax(0,1fr);gap:13px;padding:18px 0;border-bottom:1px solid var(--ep-line)}
+    #employability-preview .ep-method-step:last-child{border-bottom:0;padding-bottom:0}
+    #employability-preview .ep-step-number{font-family:Georgia,"Times New Roman",serif;font-size:20px;color:var(--ep-teal)}
+    #employability-preview .ep-method-step p{font-size:12px;color:var(--ep-muted);line-height:1.8;margin:5px 0 0}
+    #employability-preview .ep-limits{margin:14px 0 0;padding-left:17px;font-size:12px;line-height:1.9;color:var(--ep-muted)}
+    #employability-preview .ep-limits li{margin-bottom:11px;padding-left:2px}
+    #employability-preview .ep-definition{border-top:1px solid var(--ep-line);margin-top:18px;padding-top:14px;font-size:11px;line-height:1.8;color:var(--ep-muted)}
+    #employability-preview .ep-definition b{font-weight:550;color:var(--ep-ink)}
+    #employability-preview .ep-check{display:flex;gap:8px;align-items:flex-start;font-size:11px;line-height:1.8;color:var(--ep-muted);margin-top:13px}
+    #employability-preview .ep-check svg{margin-top:2px;color:var(--ep-teal)}
+    #employability-preview code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:10px;background:var(--ep-soft);padding:2px 4px;border-radius:4px;overflow-wrap:anywhere;color:var(--ep-ink)}
+    @media(min-width:1300px){#employability-preview .ep-main{padding-left:40px;padding-right:40px}#employability-preview .ep-grid-main{grid-template-columns:minmax(0,1.8fr) minmax(260px,1fr)}}
+    @media(max-width:1050px){#employability-preview .ep-shell{grid-template-columns:180px minmax(0,1fr)}#employability-preview .ep-main{padding-left:23px;padding-right:23px}#employability-preview .ep-grid-main{grid-template-columns:minmax(0,1fr) minmax(205px,.78fr);gap:15px}#employability-preview .ep-panel{padding:17px}#employability-preview .ep-score-row,#employability-preview .ep-score-axis{grid-template-columns:118px minmax(0,1fr) 31px;gap:7px}#employability-preview .ep-coef-row,#employability-preview .ep-coef-axis{grid-template-columns:120px minmax(0,1fr) 43px;gap:7px}#employability-preview .ep-metric{padding:14px 12px}#employability-preview .ep-metric-value{font-size:26px}}
+    @media(max-width:820px){#employability-preview .ep-shell{grid-template-columns:1fr;min-height:0}#employability-preview .ep-sidebar{padding:15px 20px;gap:17px}#employability-preview .ep-brand{padding:0}#employability-preview .ep-brand-name{font-size:15px}#employability-preview .ep-brand-sub{font-size:9px}#employability-preview .ep-nav-caption,#employability-preview .ep-sidebar-note,#employability-preview .ep-author{display:none}#employability-preview .ep-nav{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}#employability-preview .ep-nav-button{padding:10px 9px;gap:7px;font-size:11px;justify-content:center}#employability-preview .ep-main{padding:0 20px 20px}#employability-preview .ep-topbar{padding:15px 0}#employability-preview .ep-head{padding:24px 0}#employability-preview .ep-grid-main{grid-template-columns:minmax(0,1.45fr) minmax(205px,1fr)}#employability-preview .ep-score-row,#employability-preview .ep-score-axis{grid-template-columns:135px minmax(0,1fr) 31px}#employability-preview .ep-coef-row,#employability-preview .ep-coef-axis{grid-template-columns:140px minmax(0,1fr) 43px}}
+    @media(max-width:650px){#employability-preview .ep-grid-main{grid-template-columns:1fr}#employability-preview .ep-right-column{grid-template-columns:1fr 1fr;align-items:start}#employability-preview .ep-right-column.ep-single{grid-template-columns:1fr}#employability-preview .ep-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:18px}#employability-preview .ep-metric{padding:15px}#employability-preview .ep-score-row,#employability-preview .ep-score-axis{grid-template-columns:145px minmax(0,1fr) 35px;gap:10px}#employability-preview .ep-two{grid-template-columns:1fr}#employability-preview .ep-insight h2{font-size:20px}#employability-preview .ep-donut{width:140px;height:140px}#employability-preview .ep-cm{grid-template-columns:88px repeat(2,minmax(0,1fr))}#employability-preview .ep-select{font-size:13px}}
+    @media(max-width:450px){#employability-preview{border-radius:10px}#employability-preview .ep-main{padding-left:14px;padding-right:14px}#employability-preview .ep-sidebar{padding:14px}#employability-preview .ep-nav-button{font-size:10px;gap:4px;flex-direction:column;padding:8px 3px}#employability-preview .ep-nav-button svg{width:15px;height:15px}#employability-preview .ep-right-column{grid-template-columns:1fr}#employability-preview .ep-score-row,#employability-preview .ep-score-axis{grid-template-columns:112px minmax(0,1fr) 31px;gap:7px}#employability-preview .ep-coef-row,#employability-preview .ep-coef-axis{grid-template-columns:110px minmax(0,1fr) 43px;gap:6px}#employability-preview .ep-panel-head{flex-wrap:wrap}#employability-preview .ep-metric-value{font-size:27px}#employability-preview .ep-public span{display:none}#employability-preview .ep-topbar{font-size:10px}#employability-preview .ep-footer{font-size:9px}#employability-preview .ep-score-label,#employability-preview .ep-coef-label{font-size:11px}#employability-preview .ep-panel{padding:16px}#employability-preview h1{font-size:31px;letter-spacing:-1px}#employability-preview .ep-caption{font-size:11px}#employability-preview .ep-donut{width:160px;height:160px}#employability-preview .ep-source{font-size:10px}}
+    @media(prefers-reduced-motion:reduce){#employability-preview *{transition:none!important}}
+  </style>
+  <div class="ep-shell">
+    <aside class="ep-sidebar" aria-label="Project navigation">
+      <div class="ep-brand">
+        <div class="ep-brand-mark" aria-hidden="true"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 17V9m5 8V4m5 13v-6m5 6V7"/><path d="M3 21h18"/></svg></div>
+        <div><div class="ep-brand-name">Employability</div><div class="ep-brand-sub">Research dashboard</div></div>
+      </div>
+      <div><div class="ep-nav-caption">Explore the study</div>
+        <nav class="ep-nav" aria-label="Dashboard sections">
+          <button class="ep-nav-button" type="button" data-view="overview" aria-current="page"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Overview</button>
+          <button class="ep-nav-button" type="button" data-view="linear"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 4v16h16M7 15l4-4 4 1 5-7"/></svg>Self-efficacy</button>
+          <button class="ep-nav-button" type="button" data-view="job"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V4h8v3M3 12c6 4 12 4 18 0M12 12v5"/></svg>Job seekers</button>
+          <button class="ep-nav-button" type="button" data-view="methods"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 3h9l4 4v14H6zM14 3v5h5M9 12h7M9 16h7"/></svg>Study notes</button>
+        </nav>
+      </div>
+      <div class="ep-sidebar-note"><div class="ep-nav-caption" style="margin:0;color:#c3d7c8">A question of confidence</div><p>Exploring how senior executives see their work, their skills and their next opportunity.</p></div>
+      <div class="ep-author"><div class="ep-avatar">SD</div><div><strong>Sudhanshu Dubey</strong><small>emlyon business school</small></div></div>
+    </aside>
+    <main class="ep-main">
+      <header class="ep-topbar"><div class="ep-crumb">Introduction to Machine Learning <span aria-hidden="true">/</span> <b id="ep-breadcrumb">Overview</b></div><div class="ep-public"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c5 5 5 13 0 18M12 3c-5 5-5 13 0 18"/></svg><span>Public project preview</span></div></header>
+      <section class="ep-view" data-panel="overview" aria-label="Study overview">
+        <div class="ep-head"><div class="ep-eyebrow">The study at a glance</div><h1>Confidence, careers &amp; change.</h1><p class="ep-subtitle">A closer look at perceived employability among senior executives: how they see their skills, their options and their ability to find another job.</p></div>
+        <div class="ep-metrics">
+          <div class="ep-metric"><div class="ep-metric-label">Survey respondents</div><div class="ep-metric-value">460</div><div class="ep-metric-context">Senior executives, aged 45–65</div></div>
+          <div class="ep-metric"><div class="ep-metric-label">Currently employed</div><div class="ep-metric-value">85.4<small>%</small></div><div class="ep-metric-context">393 of the 460 respondents</div></div>
+          <div class="ep-metric"><div class="ep-metric-label">Median self-efficacy</div><div class="ep-metric-value">3.33 <small>/ 7</small></div><div class="ep-metric-context">Confidence in finding another job</div></div>
+          <div class="ep-metric"><div class="ep-metric-label">Full regression R²</div><div class="ep-metric-value ep-positive">46.2<small>%</small></div><div class="ep-metric-context">Variation accounted for in this sample</div></div>
+        </div>
+        <div class="ep-grid-main">
+          <article class="ep-panel"><div class="ep-panel-head"><div><h2>Twelve dimensions of employability</h2><p class="ep-caption">Median scores · agreement scale from 1 to 7</p></div><label><span class="ep-caption" style="display:block;margin:0 0 3px">Order scores</span><select class="ep-select" id="ep-score-sort" aria-label="Order employability scores"><option value="course">Questionnaire order</option><option value="high">Highest median first</option><option value="low">Lowest median first</option></select></label></div>
+            <div class="ep-score-axis" aria-hidden="true"><span>Dimension</span><div class="ep-ticks"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span></div><span>Median</span></div><div class="ep-score-list" id="ep-score-list"></div><div class="ep-selected-note" id="ep-score-detail" aria-live="polite"></div><div class="ep-source">Source: saved UniQuant summaries. Select a dimension to inspect its median.</div>
+          </article>
+          <div class="ep-right-column">
+            <article class="ep-panel"><h2>Who answered the survey?</h2><p class="ep-caption">Current employment status · all respondents</p><div class="ep-donut" role="img" aria-label="393 employed respondents and 67 job seekers out of 460"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="47" fill="none" stroke="var(--ep-coral)" stroke-width="10" opacity=".7"/><circle cx="60" cy="60" r="47" fill="none" stroke="var(--ep-teal)" stroke-width="10" stroke-dasharray="252.29721 295.30971"/></svg><div class="ep-donut-center"><strong>460</strong><span>respondents</span></div></div><div class="ep-legend-row"><span class="ep-swatch" style="background:var(--ep-teal)"></span>Employed<strong>393</strong><em>85.4%</em></div><div class="ep-legend-row"><span class="ep-swatch" style="background:var(--ep-coral)"></span>Job seeker<strong>67</strong><em>14.6%</em></div><div class="ep-source">Source: job_status_summary.</div></article>
+            <article class="ep-panel ep-insight"><div class="ep-rule"></div><h2>Competent at work.<br>Less certain about the next job.</h2><p>The median competence score is <strong>6.33</strong>, while median self-efficacy is <strong>3.33</strong>. These dimensions describe different aspects of perceived employability.</p><button class="ep-link-button" type="button" data-view="linear">Explore self-efficacy <span aria-hidden="true">↗</span></button></article>
+          </div>
+        </div>
+        <div class="ep-two">
+          <article class="ep-panel ep-result-card"><div class="ep-section-tag">01 · Understanding confidence</div><h2>Flexibility and value awareness stand out.</h2><p>They have the largest absolute standardised coefficients in the full self-efficacy regression. These are conditional associations among correlated predictors.</p><button class="ep-link-button" type="button" data-view="linear">Explore the linear model <span aria-hidden="true">↗</span></button></article>
+          <article class="ep-panel ep-result-card"><div class="ep-section-tag">02 · Identifying job seekers</div><h2>The classifier detects 1 of 13 job seekers.</h2><p>Validation accuracy is 82.61%, below the 85.87% majority-class baseline. Recall reveals how many job seekers the model misses.</p><button class="ep-link-button" type="button" data-view="job">Explore the evaluation <span aria-hidden="true">↗</span></button></article>
+        </div>
+      </section>
+      <section class="ep-view" data-panel="linear" aria-label="Linear regression results" hidden>
+        <div class="ep-head"><div class="ep-eyebrow">Understanding professional self-efficacy</div><h1>What relates to confidence?</h1><p class="ep-subtitle">A multiple linear regression explains the self-efficacy score using the other employability dimensions and the prepared personal variables.</p></div>
+        <div class="ep-metrics"><div class="ep-metric"><div class="ep-metric-label">R²</div><div class="ep-metric-value ep-positive">0.4620</div><div class="ep-metric-context">Full model · fit to all 460 observations</div></div><div class="ep-metric"><div class="ep-metric-label">Adjusted R²</div><div class="ep-metric-value">0.4230</div><div class="ep-metric-context">Accounts for the number of predictors</div></div><div class="ep-metric"><div class="ep-metric-label">Fitted RMSE</div><div class="ep-metric-value">1.0785</div><div class="ep-metric-context">Self-efficacy points · 1–7 scale</div></div><div class="ep-metric"><div class="ep-metric-label">Predictor columns</div><div class="ep-metric-value">31</div><div class="ep-metric-context">11 scores + encoded personal variables</div></div></div>
+        <div class="ep-grid-main">
+          <article class="ep-panel"><div class="ep-panel-head"><div><h2>Conditional associations</h2><p class="ep-caption">Standardised coefficients · ordered by absolute magnitude</p></div></div><div class="ep-segment" aria-label="Predictor group"><button type="button" data-coef-group="scores" aria-pressed="true">Employability scores</button><button type="button" data-coef-group="personal" aria-pressed="false">Personal variables</button></div><div class="ep-coef-axis" aria-hidden="true"><span>Predictor</span><div class="ep-ticks"><span>−0.4</span><span>0</span><span>+0.4</span></div><span>β std.</span></div><div class="ep-coef-list" id="ep-coef-list"></div><div class="ep-chart-key"><span><i class="ep-key-mark"></i>Positive association</span><span><i class="ep-key-mark" style="background:var(--ep-coral)"></i>Negative association</span></div><div class="ep-source">Source: coef_table. All other included predictors are held constant.</div></article>
+          <div class="ep-right-column ep-single"><article class="ep-panel"><span class="ep-badge">Selected predictor</span><div id="ep-coef-detail" aria-live="polite"></div><div class="ep-definition"><b>Reading the two coefficients</b><br>The raw coefficient uses the original units. The standardised coefficient expresses the association in standard deviations of the outcome.</div></article><article class="ep-panel ep-insight"><h2>Shared information matters.</h2><p>Several scores are correlated. Coefficient sizes and rankings depend on the other predictors included in the model. They do not establish causal importance.</p></article></div>
+        </div>
+        <article class="ep-panel ep-wide"><div class="ep-panel-head"><div><h2>What do personal variables add?</h2><p class="ep-caption">Both models use the same 460 observations for fitting and evaluation.</p></div><span class="ep-badge">In-sample comparison</span></div><div class="ep-table-wrap"><table><thead><tr><th scope="col">Model</th><th scope="col">Predictors</th><th scope="col">RMSE</th><th scope="col">R²</th><th scope="col">Adjusted R²</th></tr></thead><tbody id="ep-comparison-table"></tbody></table></div><p class="ep-body-copy">Adding personal variables increases fitted R² by about 6.02 percentage points. Adjusted R² also increases. Performance on new respondents was not tested for these linear models.</p><div class="ep-source">Source: comparison.round(4).</div></article>
+      </section>
+      <section class="ep-view" data-panel="job" aria-label="Job-seeker model evaluation" hidden>
+        <div class="ep-head"><div class="ep-eyebrow">Evaluating the job-seeker model</div><h1>Accuracy is only part of the story.</h1><p class="ep-subtitle">Logistic regression estimates job-seeker probability. This evaluation uses a stratified validation set and the model’s default 0.50 classification cutoff.</p></div>
+        <div class="ep-metrics"><div class="ep-metric"><div class="ep-metric-label">Validation respondents</div><div class="ep-metric-value">92</div><div class="ep-metric-context">79 employed · 13 job seekers</div></div><div class="ep-metric"><div class="ep-metric-label">Validation accuracy</div><div class="ep-metric-value">82.61<small>%</small></div><div class="ep-metric-context">Majority-class baseline: 85.87%</div></div><div class="ep-metric"><div class="ep-metric-label">Job-seeker recall</div><div class="ep-metric-value ep-caution">7.69<small>%</small></div><div class="ep-metric-context">1 of 13 job seekers correctly detected</div></div><div class="ep-metric"><div class="ep-metric-label">Job seekers missed</div><div class="ep-metric-value ep-caution">12 <small>/ 13</small></div><div class="ep-metric-context">Predicted as employed at cutoff 0.50</div></div></div>
+        <div class="ep-grid-main"><article class="ep-panel"><div class="ep-panel-head"><div><h2>Where the model gets it wrong</h2><p class="ep-caption">Confusion matrix · select a cell to interpret it</p></div><span class="ep-badge">Validation set</span></div><div class="ep-cm"><div class="ep-cm-label">Actual ↓<br>Predicted →</div><div class="ep-cm-label">Employed</div><div class="ep-cm-label">Job seeker</div><div class="ep-cm-label">Employed</div><button class="ep-cm-box correct" type="button" data-cm="0,0" aria-pressed="false" aria-label="75 employed respondents predicted as employed"><strong>75</strong><span>Correctly employed</span></button><button class="ep-cm-box" type="button" data-cm="0,1" aria-pressed="false" aria-label="4 employed respondents predicted as job seekers"><strong>4</strong><span>False job-seeker labels</span></button><div class="ep-cm-label">Job seeker</div><button class="ep-cm-box missed" type="button" data-cm="1,0" aria-pressed="true" aria-label="12 job seekers predicted as employed"><strong>12</strong><span>Missed job seekers</span></button><button class="ep-cm-box correct" type="button" data-cm="1,1" aria-pressed="false" aria-label="1 job seeker correctly predicted as a job seeker"><strong>1</strong><span>Detected job seeker</span></button></div><div class="ep-selected-note" id="ep-cm-detail" aria-live="polite"></div><div class="ep-source">Source: cm and classification_report. Rows show actual status; columns show predicted status.</div></article>
+          <div class="ep-right-column ep-single"><article class="ep-panel"><h2>Does it beat the baseline?</h2><p class="ep-caption">Accuracy on the same 92 validation respondents</p><div class="ep-bar-compare"><div><div class="ep-bar-label"><span>Always predict employed</span><strong>85.87%</strong></div><div class="ep-bar-track"><div class="ep-bar-fill" style="width:85.869565%"></div></div></div><div><div class="ep-bar-label"><span>Logistic regression</span><strong>82.61%</strong></div><div class="ep-bar-track"><div class="ep-bar-fill" style="width:82.608696%;background:var(--ep-coral)"></div></div></div></div><div class="ep-chart-key" style="justify-content:space-between"><span>0%</span><span>100%</span></div><div class="ep-source">Source: accuracy_valid and baseline_valid.</div></article><article class="ep-panel ep-soft-caution"><h2>Limited usefulness at this cutoff.</h2><p>The model misses most validation job seekers and falls below the majority-class baseline. It offers weak identification of job seekers on this split.</p></article></div>
+        </div>
+        <div class="ep-two"><article class="ep-panel"><h2>Interpreting the odds ratios</h2><label class="ep-odds-label" for="ep-odds-picker">Choose a predictor</label><select class="ep-select ep-odds-picker" id="ep-odds-picker"></select><div id="ep-odds-detail" aria-live="polite"></div><div class="ep-source">Source: odds_table.round(4). Training-model estimates; other predictors are held constant.</div></article><article class="ep-panel"><div class="ep-section-tag">Interpretation limit</div><h2>Which way does the relationship run?</h2><p class="ep-body-copy">Job seekers report higher training and network scores. Their situation may lead them to train or use their networks; those experiences may also precede the job search.</p><p class="ep-body-copy">This survey cannot establish the sequence or isolate a causal effect. The scores include past experiences and perceptions, rather than direct measures of activity frequency.</p><div class="ep-definition"><b>Model setup</b><br>368 training respondents · 92 validation respondents<br>Stratified 80/20 split · random seed 42<br>31 predictor columns · unpenalised logistic regression</div></article></div>
+      </section>
+      <section class="ep-view" data-panel="methods" aria-label="Methods and limitations" hidden>
+        <div class="ep-head"><div class="ep-eyebrow">Methods, meaning &amp; limitations</div><h1>The reasoning behind the results.</h1><p class="ep-subtitle">The dashboard presents the completed course analysis. Its conclusions apply to the observed survey sample and the model evaluations shown here.</p></div>
+        <div class="ep-grid-main"><article class="ep-panel"><h2>From survey to interpretation</h2><div class="ep-method-step"><div class="ep-step-number">01</div><div><h3>Explore the respondents and twelve scores</h3><p>Frequency tables, score summaries, histograms and boxplots describe the sample. Pearson correlations, ANOVA with η² and chi-square with Cramér’s V describe relationships.</p></div></div><div class="ep-method-step"><div class="ep-step-number">02</div><div><h3>Prepare the modelling variables</h3><p>Remove the respondent identifier. Combine the two smallest sectors with Other. Group salary into &lt; 60k, 60–99k and &gt; 99k. Dummy encode categorical variables with one reference category each. Retain all 460 respondents.</p></div></div><div class="ep-method-step"><div class="ep-step-number">03</div><div><h3>Explain self-efficacy</h3><p>Fit linear regression with the eleven other scores and personal variables. Compare it with a scores-only model, using fitted RMSE, R² and adjusted R². Interpret raw and standardised coefficients together.</p></div></div><div class="ep-method-step"><div class="ep-step-number">04</div><div><h3>Evaluate job-seeker classification</h3><p>Fit logistic regression on the stratified training split. Evaluate validation accuracy against the majority-class baseline, inspect the confusion matrix and job-seeker recall, and interpret odds ratios.</p></div></div></article><div class="ep-right-column ep-single"><article class="ep-panel"><h2>What the analysis cannot establish</h2><ul class="ep-limits"><li>The convenience sample is not representative of all senior executives.</li><li>Self-reported scores describe perceptions of employability.</li><li>Correlated predictors make coefficient rankings conditional on the model.</li><li>Sparse categories and a small validation job-seeker group limit precision.</li><li>Associations do not determine causal direction.</li></ul></article><article class="ep-panel ep-soft-caution"><h2>Restricted course source</h2><p>The survey dataset is restricted to course use and is excluded from this public project. This dashboard contains aggregate summaries and model statistics only; it does not contain respondent records or load the original CSV.</p></article></div></div>
+        <article class="ep-panel ep-wide"><div class="ep-section-tag">For HR &amp; outplacement teams</div><h2>Use the findings to support a conversation.</h2><div class="ep-two" style="margin-top:14px"><div><h3>Separate competence from confidence</h3><p class="ep-body-copy">Discuss achievements, transferable skills and realistic career options. Flexibility and value awareness are relevant topics, while the survey does not demonstrate the effect of a coaching intervention.</p></div><div><h3>Assess each person’s support needs</h3><p class="ep-body-copy">Review training needs and how professional contacts are used. Establish employment status directly. Further evaluation would be needed before using this classifier operationally.</p></div></div><div class="ep-definition"><b>Source and assistance</b><br>Aggregate values come from the completed course notebook. Sudhanshu Dubey ran the analysis, reviewed the outputs, cleaned up suggested code and challenged suggestions. ChatGPT and Codex assisted with code guidance, review, interpretation and dashboard presentation. The dashboard adds no new fitted models.</div></article>
+      </section>
+      <footer class="ep-footer"><span>Sudhanshu Dubey · Introduction to Machine Learning</span><span><a href="https://github.com/sudhanshudubey/ML_class_project" style="color:inherit">View project on GitHub ↗</a> · Fixed aggregate results</span></footer>
+    </main>
+  </div>
+  <script id="ep-results" type="application/json">{"rows":460,"medians":{"competence":6.33,"anticipation":5.67,"flexibility":5.33,"job_search_techniques":5.75,"self_efficacy":3.33,"training":3.86,"alternative_employment":2.86,"value_awareness":5.5,"market_knowledge":5.33,"versatility":5.0,"know_how_visibility":5.0,"networks":5.2},"linear_comparison":{"Scores only":{"Predictors":11,"RMSE":1.1372719542479761,"R²":0.40179711031763177,"Adjusted R²":0.387109092937038},"Scores + personal variables":{"Predictors":31,"RMSE":1.078545642271906,"R²":0.46198187721209005,"Adjusted R²":0.42301327486062934}},"linear_coefficients":{"competence":{"Coefficient":-0.12270888354161097,"Standardized Coefficient":-0.05622960457115662},"anticipation":{"Coefficient":-0.002048735504452448,"Standardized Coefficient":-0.0011798248920053063},"flexibility":{"Coefficient":0.5506461914336801,"Standardized Coefficient":0.37286103007935184},"job_search_techniques":{"Coefficient":0.006012645757279433,"Standardized Coefficient":0.004594899122790917},"training":{"Coefficient":-0.01656680166546917,"Standardized Coefficient":-0.014832803265035279},"alternative_employment":{"Coefficient":0.03599657374157621,"Standardized Coefficient":0.03332147096382006},"value_awareness":{"Coefficient":0.43441812621392106,"Standardized Coefficient":0.32248852928054644},"market_knowledge":{"Coefficient":0.1059868693887426,"Standardized Coefficient":0.08924783023639436},"versatility":{"Coefficient":-0.059028978228487614,"Standardized Coefficient":-0.04926192085278424},"know_how_visibility":{"Coefficient":0.0690730337441286,"Standardized Coefficient":0.05422359353394123},"networks":{"Coefficient":-0.07277283374194579,"Standardized Coefficient":-0.07516521166328495},"age":{"Coefficient":-0.03903939407041342,"Standardized Coefficient":-0.09961944772877984},"children":{"Coefficient":0.01835168922754898,"Standardized Coefficient":0.01566553763013701},"sex_Male":{"Coefficient":-0.08079304360646213,"Standardized Coefficient":-0.02673350560925611},"job_status_Job seeker":{"Coefficient":-0.523822970452329,"Standardized Coefficient":-0.12566672810657234},"education_place_France":{"Coefficient":0.04430985276435698,"Standardized Coefficient":0.0036889309000594397},"education_level_Beyond master (\u003e 5 years)":{"Coefficient":-0.171945666118295,"Standardized Coefficient":-0.057437489984122535},"education_level_Master (4-5 years)":{"Coefficient":-0.003804776822816038,"Standardized Coefficient":-0.0012576123211556138},"degree_type_Engineering school":{"Coefficient":-0.006633988728939676,"Standardized Coefficient":-0.001196204161094437},"degree_type_Other":{"Coefficient":-0.10560833927145398,"Standardized Coefficient":-0.014991400720289698},"degree_type_University":{"Coefficient":0.19145869871914323,"Standardized Coefficient":0.034971267549583795},"sector_Education, health & social work":{"Coefficient":0.2895229279793663,"Standardized Coefficient":0.0478544895952435},"sector_Finance & insurance":{"Coefficient":-0.31582784255313706,"Standardized Coefficient":-0.08556307521993363},"sector_Industry":{"Coefficient":-0.2633088851265471,"Standardized Coefficient":-0.0746483696379932},"sector_Information & communication":{"Coefficient":-0.48445884576112547,"Standardized Coefficient":-0.0928354021955177},"sector_Other":{"Coefficient":-0.22879211958316237,"Standardized Coefficient":-0.06323091440619626},"sector_Trade, transport, hotels & restaurants":{"Coefficient":-0.47238778129193193,"Standardized Coefficient":-0.09637842711342545},"family_status_Couple with children":{"Coefficient":0.16721955136561797,"Standardized Coefficient":0.0503334445703783},"family_status_Single":{"Coefficient":0.141021511666927,"Standardized Coefficient":0.03340740054436789},"salary_band_\u003c 60k":{"Coefficient":-0.09302193128520676,"Standardized Coefficient":-0.02130556545938603},"salary_band_\u003e 99k":{"Coefficient":0.3722991584638658,"Standardized Coefficient":0.1186917746299049}},"odds":{"competence":{"Coefficient":-0.23668665788396615,"Odds ratio":0.7892385509542522},"anticipation":{"Coefficient":-0.008751536936692674,"Odds ratio":0.9912866462941793},"flexibility":{"Coefficient":0.4226765825859184,"Odds ratio":1.526040668020188},"job_search_techniques":{"Coefficient":0.23252604513168865,"Odds ratio":1.2617833092434771},"self_efficacy":{"Coefficient":-0.500016778200839,"Odds ratio":0.6065204833047809},"training":{"Coefficient":0.21991528598855672,"Odds ratio":1.2459711749000526},"alternative_employment":{"Coefficient":-0.030089480575108362,"Odds ratio":0.9703587014090077},"value_awareness":{"Coefficient":0.04109166136692417,"Odds ratio":1.0419476075104601},"market_knowledge":{"Coefficient":-0.08612772255701337,"Odds ratio":0.9174770412227012},"versatility":{"Coefficient":0.03472858168597361,"Odds ratio":1.0353386607868027},"know_how_visibility":{"Coefficient":0.31029626309661834,"Odds ratio":1.3638291065195607},"networks":{"Coefficient":0.27790923398173034,"Odds ratio":1.320366347374023},"age":{"Coefficient":0.028796621697361233,"Odds ratio":1.0292152531368766},"children":{"Coefficient":-0.28843421419198934,"Odds ratio":0.7494361057856153},"sex_Male":{"Coefficient":-0.3437303012178589,"Odds ratio":0.7091201511031835},"education_place_France":{"Coefficient":-2.834484950781975,"Odds ratio":0.05874877655432281},"education_level_Beyond master (\u003e 5 years)":{"Coefficient":-0.7907871796069744,"Odds ratio":0.45348767849074656},"education_level_Master (4-5 years)":{"Coefficient":-0.5376362067464325,"Odds ratio":0.5841273781033695},"degree_type_Engineering school":{"Coefficient":0.8518565482843011,"Odds ratio":2.3439945538853166},"degree_type_Other":{"Coefficient":1.9084158830266111,"Odds ratio":6.7423995846606095},"degree_type_University":{"Coefficient":0.8639684355302379,"Odds ratio":2.3725573773009274},"sector_Education, health & social work":{"Coefficient":0.07027609582730499,"Odds ratio":1.072804337169636},"sector_Finance & insurance":{"Coefficient":0.5358907265731183,"Odds ratio":1.7089697893164129},"sector_Industry":{"Coefficient":0.34895541405171643,"Odds ratio":1.4175859845175576},"sector_Information & communication":{"Coefficient":-0.010781199451523601,"Odds ratio":0.9892767093835454},"sector_Other":{"Coefficient":0.2780390347871457,"Odds ratio":1.3205377431127674},"sector_Trade, transport, hotels & restaurants":{"Coefficient":0.8688351254395285,"Odds ratio":2.3841320206030057},"family_status_Couple with children":{"Coefficient":0.031313900598722993,"Odds ratio":1.0318093386270673},"family_status_Single":{"Coefficient":0.34397575338969677,"Odds ratio":1.410544434171836},"salary_band_\u003c 60k":{"Coefficient":-0.17575466649541444,"Odds ratio":0.8388237496655897},"salary_band_\u003e 99k":{"Coefficient":0.4622388696785343,"Odds ratio":1.5876244932876336}},"validation_accuracy":0.8260869565217391,"validation_baseline":0.8586956521739131,"job_recall":0.07692307692307693,"cm":[[75,4],[12,1]]}</script>
+  <script>
+    (() => {
+      const root = document.getElementById('employability-preview');
+      if (!root) return;
+      const data = JSON.parse(root.querySelector('#ep-results').textContent);
+      const $ = selector => root.querySelector(selector);
+      const $$ = selector => Array.from(root.querySelectorAll(selector));
+      const labels = {
+        competence:'Competence', anticipation:'Anticipation', flexibility:'Flexibility',
+        job_search_techniques:'Job search techniques', self_efficacy:'Self-efficacy',
+        training:'Training', alternative_employment:'Alternative employment',
+        value_awareness:'Value awareness', market_knowledge:'Market knowledge',
+        versatility:'Versatility', know_how_visibility:'Know-how visibility', networks:'Networks',
+        age:'Age', children:'Dependent children', sex_Male:'Male vs Female',
+        'job_status_Job seeker':'Job seeker vs Employed',
+        education_place_France:'Highest degree: France vs Abroad',
+        'education_level_Beyond master (> 5 years)':'Beyond master vs Bachelor',
+        'education_level_Master (4-5 years)':'Master vs Bachelor',
+        'degree_type_Engineering school':'Engineering vs Business school',
+        degree_type_Other:'Other degree vs Business school', degree_type_University:'University vs Business school',
+        'sector_Education, health & social work':'Education/health vs Business support',
+        'sector_Finance & insurance':'Finance vs Business support',
+        sector_Industry:'Industry vs Business support',
+        'sector_Information & communication':'Information vs Business support',
+        sector_Other:'Other sector vs Business support',
+        'sector_Trade, transport, hotels & restaurants':'Trade/transport/hospitality vs Business support',
+        'family_status_Couple with children':'Couple with children vs Couple', family_status_Single:'Single vs Couple',
+        'salary_band_< 60k':'Salary < 60k vs 60–99k', 'salary_band_> 99k':'Salary > 99k vs 60–99k'
+      };
+      const order = Object.keys(data.medians);
+      const signed = (number, digits = 4) => (number >= 0 ? '+' : '−') + Math.abs(number).toFixed(digits);
+      const escapeText = text => String(text).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+      let selectedScore = 'self_efficacy';
+      let coefGroup = 'scores';
+      let selectedCoef = 'flexibility';
+      const titles = {overview:'Overview',linear:'Self-efficacy',job:'Job seekers',methods:'Study notes'};
+      function showView(view) {
+        if (!titles[view]) return;
+        $$('[data-panel]').forEach(panel => { panel.hidden = panel.dataset.panel !== view; });
+        $$('.ep-nav-button').forEach(button => {
+          if (button.dataset.view === view) button.setAttribute('aria-current','page');
+          else button.removeAttribute('aria-current');
+        });
+        $('#ep-breadcrumb').textContent = titles[view];
+      }
+      $$('[data-view]').forEach(button => button.addEventListener('click', () => showView(button.dataset.view)));
+      function renderScores() {
+        const mode = $('#ep-score-sort').value;
+        const keys = order.slice();
+        if (mode !== 'course') keys.sort((a,b) => mode === 'high' ? data.medians[b] - data.medians[a] : data.medians[a] - data.medians[b]);
+        $('#ep-score-list').innerHTML = keys.map(key => `<button type="button" class="ep-score-row" data-score="${key}" aria-pressed="${key===selectedScore}" aria-label="${escapeText(labels[key])}, median ${data.medians[key].toFixed(2)} out of 7"><span class="ep-score-label">${escapeText(labels[key])}</span><span class="ep-score-track" aria-hidden="true"><span class="ep-score-dot" style="left:${((data.medians[key]-1)/6*100).toFixed(4)}%"></span></span><span class="ep-score-number">${data.medians[key].toFixed(2)}</span></button>`).join('');
+        $$('[data-score]').forEach(button => button.addEventListener('click', () => { selectedScore=button.dataset.score;renderScores(); }));
+        const detail = selectedScore === 'self_efficacy' ? 'This score describes confidence in finding another suitable job.' : 'This is the median of the supplied questionnaire score, on its 1–7 agreement scale.';
+        $('#ep-score-detail').innerHTML = `<strong>${escapeText(labels[selectedScore])} · ${data.medians[selectedScore].toFixed(2)} / 7</strong><br>${detail}`;
+      }
+      $('#ep-score-sort').addEventListener('change',renderScores);
+      function renderCoefficients() {
+        const keys = Object.keys(data.linear_coefficients).filter(key => coefGroup==='scores' ? order.includes(key) : !order.includes(key));
+        keys.sort((a,b) => Math.abs(data.linear_coefficients[b]['Standardized Coefficient']) - Math.abs(data.linear_coefficients[a]['Standardized Coefficient']));
+        if (!keys.includes(selectedCoef)) selectedCoef=keys[0];
+        $('#ep-coef-list').innerHTML = keys.map(key => {
+          const value=data.linear_coefficients[key]['Standardized Coefficient'];
+          const width=Math.abs(value)/.4*50;
+          const left=value < 0 ? 50-width : 50;
+          return `<button type="button" class="ep-coef-row" data-coef="${escapeText(key)}" aria-pressed="${key===selectedCoef}" aria-label="${escapeText(labels[key])}, standardised coefficient ${value.toFixed(4)}"><span class="ep-coef-label">${escapeText(labels[key])}</span><span class="ep-coef-track" aria-hidden="true"><span class="ep-coef-bar ${value<0?'negative':''}" style="left:${left.toFixed(4)}%;width:${width.toFixed(4)}%"></span></span><span class="ep-coef-value">${signed(value,3)}</span></button>`;
+        }).join('');
+        $$('[data-coef]').forEach(button => button.addEventListener('click',() => {selectedCoef=button.dataset.coef;renderCoefficients();}));
+        const entry=data.linear_coefficients[selectedCoef];
+        let description;
+        if(order.includes(selectedCoef)) description=`A one-point higher ${labels[selectedCoef].toLowerCase()} score is associated with a self-efficacy score that is ${Math.abs(entry.Coefficient).toFixed(3)} points ${entry.Coefficient>=0?'higher':'lower'}, holding other predictors constant.`;
+        else if(selectedCoef==='age') description=`Each additional year of age is associated with a self-efficacy score that is ${Math.abs(entry.Coefficient).toFixed(3)} points ${entry.Coefficient>=0?'higher':'lower'}, holding other predictors constant.`;
+        else if(selectedCoef==='children') description='The coefficient refers to one additional unit of the recorded dependent-children variable. Its highest code means four or more children.';
+        else description=`The raw coefficient is the adjusted self-efficacy difference for ${labels[selectedCoef].split(' vs ')[0]} relative to ${labels[selectedCoef].split(' vs ')[1]}, holding other predictors constant.`;
+        $('#ep-coef-detail').innerHTML = `<div class="ep-note-title">${escapeText(labels[selectedCoef])}</div><p class="ep-body-copy">${escapeText(description)}</p><div class="ep-big-comparison"><div class="ep-number-block"><small>Raw coefficient</small><strong>${signed(entry.Coefficient)}</strong></div><div class="ep-number-block"><small>Standardised</small><strong>${signed(entry['Standardized Coefficient'])}</strong></div></div>`;
+      }
+      $$('[data-coef-group]').forEach(button => button.addEventListener('click',() => {
+        coefGroup=button.dataset.coefGroup;
+        $$('[data-coef-group]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+        renderCoefficients();
+      }));
+      $('#ep-comparison-table').innerHTML=Object.entries(data.linear_comparison).map(([name,row])=>`<tr><td>${escapeText(name)}</td><td>${row.Predictors}</td><td>${row.RMSE.toFixed(4)}</td><td>${row['R²'].toFixed(4)}</td><td>${row['Adjusted R²'].toFixed(4)}</td></tr>`).join('');
+      const cellNotes={
+        '0,0':'75 employed respondents were correctly predicted as employed.',
+        '0,1':'4 employed respondents were incorrectly predicted as job seekers. These are false positives for the job-seeker class.',
+        '1,0':'12 job seekers were incorrectly predicted as employed. These are false negatives for the job-seeker class.',
+        '1,1':'1 job seeker was correctly detected. Together with the 12 missed job seekers, this gives recall of 1 / 13 = 7.69%.'
+      };
+      $$('[data-cm]').forEach(button => button.addEventListener('click',()=>{
+        $$('[data-cm]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+        $('#ep-cm-detail').textContent=cellNotes[button.dataset.cm];
+      }));
+      $('#ep-cm-detail').textContent=cellNotes['1,0'];
+      const oddsKeys=Object.keys(data.odds);
+      $('#ep-odds-picker').innerHTML=oddsKeys.map(key=>`<option value="${escapeText(key)}">${escapeText(labels[key])}</option>`).join('');
+      $('#ep-odds-picker').value='self_efficacy';
+      function renderOdds(){
+        const key=$('#ep-odds-picker').value;
+        const value=data.odds[key]['Odds ratio'];
+        let description;
+        if(order.includes(key)) description=`A one-point higher ${labels[key].toLowerCase()} score is associated with ${value.toFixed(4)} times the odds of being a job seeker.`;
+        else if(key==='age') description=`Each additional year of age is associated with ${value.toFixed(4)} times the odds of being a job seeker.`;
+        else if(key==='children') description=`One additional unit of the dependent-children variable is associated with ${value.toFixed(4)} times the odds of being a job seeker. The highest code is four or more children.`;
+        else description=`The estimated odds for ${labels[key].split(' vs ')[0]} are ${value.toFixed(4)} times those for ${labels[key].split(' vs ')[1]}.`;
+        const sparse=key==='education_place_France'?' The Abroad category contains only seven respondents in the full sample, so this estimate requires particular caution.':'';
+        $('#ep-odds-detail').innerHTML=`<div class="ep-odds-value">${value.toFixed(4)}<small> ×</small></div><p class="ep-caption">Job-seeker odds ratio</p><p class="ep-body-copy">${escapeText(description)} Other included predictors are held constant.${sparse}</p><div class="ep-definition">An odds ratio multiplies <b>odds</b>. It is not a change in probability points and does not establish causation.</div>`;
+      }
+      $('#ep-odds-picker').addEventListener('change',renderOdds);
+      renderScores();renderCoefficients();renderOdds();
+    })();
+  </script>
+</div>
+
+</body>
+</html>
